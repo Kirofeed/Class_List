@@ -74,3 +74,57 @@ void List::ListPrint() const {
     }
     cout << p->name << endl;
 }
+bool List::DeleteFirst() {
+    if (First == nullptr) {
+        return false;
+    }
+    City *p = First;
+    First = First->Next;
+    delete p;
+    return true;
+}
+bool List::DeleteLast() {
+    if (First == nullptr) {
+        return false;
+    }
+    if (First->Next == nullptr) {
+        // если в списке всего один элемент
+        delete First;
+        First = nullptr;
+        return true;
+    }
+    City *q = First;
+    City *prev = nullptr;
+    while (q->Next != nullptr) {
+        prev = q;
+        q = q->Next;
+    }
+    delete q;
+    prev->Next = nullptr;
+    return true;
+}
+bool List::Delete_by_Info(const int& element) {
+    City *p = First, *r = nullptr;
+    while (p != nullptr) {
+
+
+        if (r == nullptr) {
+            if (p->name == element ) {
+                First = p->Next;
+                delete p;
+                p = First;
+            }
+            else {
+                r = p;
+                p = p -> Next;
+            }
+        }
+
+        else {
+
+
+
+        }
+    }
+}
+

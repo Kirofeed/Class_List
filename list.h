@@ -18,4 +18,7 @@ public:
     void InsertFirst(const int &);
     void InsertLast(const int &);
     void ListPrint() const;
+    bool DeleteFirst();
+    bool DeleteLast();
+    bool Delete_by_Info(const int& );
 };
