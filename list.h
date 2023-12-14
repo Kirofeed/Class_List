@@ -20,5 +20,5 @@ public:
     void ListPrint() const;
     bool DeleteFirst();
     bool DeleteLast();
-    bool Delete_by_Info(const int& );
+    void Delete_by_Info(const int& );
 };

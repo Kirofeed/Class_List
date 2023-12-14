@@ -3,10 +3,11 @@
 List::List(const List &L)
 {
     Clone(L);
+    this->First = L.First;
 }
 
 void List::Erase() {
-    City *p = First, *q;
+    const City *p = First, *q;
     while (p!=nullptr)
     {
         q=p->Next;
@@ -29,6 +30,7 @@ void List::Clone(const List& L) {
         }
         r = q;
         p = p->Next;
+        delete q;
     }
 
 }
@@ -103,13 +105,11 @@ bool List::DeleteLast() {
     prev->Next = nullptr;
     return true;
 }
-bool List::Delete_by_Info(const int& element) {
+void List::Delete_by_Info(const int& element) {
     City *p = First, *r = nullptr;
     while (p != nullptr) {
-
-
         if (r == nullptr) {
-            if (p->name == element ) {
+            if (p->name == element) {
                 First = p->Next;
                 delete p;
                 p = First;
@@ -119,11 +119,16 @@ bool List::Delete_by_Info(const int& element) {
                 p = p -> Next;
             }
         }
-
         else {
-
-
-
+            if (p->name == element) {
+                r->Next = p->Next;
+                delete p;
+                p = r->Next;
+            }
+            else {
+                r = p;
+                p = p->Next;
+            }
         }
     }
 }
