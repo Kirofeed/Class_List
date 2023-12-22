@@ -44,13 +44,13 @@ const List & List::operator = (const List &L)
     Clone(L);
     return *this;
 }
-void List::InsertFirst(const int &element) {
+void List::InsertFirst(const string &element) {
     City *p = new City;
     p->name = element;
     p->Next = First;
     First = p;
 }
-void List::InsertLast(const int &element) {
+void List::InsertLast(const string &element) {
     if (First != nullptr) {
         City *p = new City, *q = First;
         p->name = element;
@@ -105,7 +105,7 @@ bool List::DeleteLast() {
     prev->Next = nullptr;
     return true;
 }
-void List::Delete_by_Info(const int& element) {
+void List::Delete_by_Info(const string& element) {
     City *p = First, *r = nullptr;
     while (p != nullptr) {
         if (r == nullptr) {
@@ -132,4 +132,55 @@ void List::Delete_by_Info(const int& element) {
         }
     }
 }
+int List::Find_by_Info(const string& element) {
+    try {
+        int counter = 1;
+        City *q;
+        q = First;
+        if (First == nullptr) {
+            throw "List is empty";
+        } else {
+            while (q != nullptr) {
+                if (q->name == element) {
+                    return counter;
+                } else {
+                    counter++;
+                    q = q->Next;
+                }
+            }
+        }
+        return counter;
+    }
+    catch (const char *error_message) {
+        cerr << "Error: " << error_message;
+        exit(EXIT_FAILURE);
+    }
 
+}
+
+void List::ForEach (void Fun (string&)) {
+    City* P = First;
+
+    if (P == nullptr) {
+        cout << "список пуст" << endl;
+        return;
+    }
+
+    while (P != nullptr) {
+        Fun(P->name);
+        P = P->Next;
+    }
+}
+void List::ForEach(void Fun (string)) const {
+    City* P = First;
+
+    if (P == nullptr) {
+        cout << "список пуст" << endl;
+        return;
+    }
+
+    while (P != nullptr) {
+        Fun(P->name);
+        P = P->Next;
+    }
+}

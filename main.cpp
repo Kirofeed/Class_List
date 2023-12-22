@@ -2,16 +2,33 @@
 
 using namespace std;
 
+void MegaFunk (string& str) {
+    str = str + " is a big city";
+}
+void Funk (string str){
+    cout << str << "\t";
+}
+
 int main() {
     List Cities;
-    Cities.InsertLast(0);
-    Cities.InsertLast(2);
-    Cities.InsertLast(3);
-    Cities.InsertLast(4);
-    Cities.InsertLast(5);
-    Cities.InsertLast(6);
+    Cities.InsertLast("Minsk");
+    Cities.InsertLast("Moscow");
+    Cities.InsertLast("Warsaw");
+    Cities.InsertLast("Paris");
+    Cities.InsertLast("New-York");
+    Cities.InsertLast("Berlin");
+    Cities.InsertLast("Chili");
     Cities.ListPrint();
-    Cities.Delete_by_Info(0);
+    Cities.Delete_by_Info("New-York");
     Cities.ListPrint();
+    cout << Cities.Find_by_Info("Berlin") << endl;
+    for (int i = 0; i < 3; ++i) {
+        cout << endl;
+    }
+    Cities.ForEach(Funk);
+    cout << endl << "Elements were not changed" << endl;
+    Cities.ForEach(MegaFunk);
+    Cities.ListPrint();
+    cout << endl << "Elements were changed inside the Funktion" << endl;
 
 }
